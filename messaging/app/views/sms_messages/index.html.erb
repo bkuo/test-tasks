@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:user) %></th>
-      <th><%= model_class.human_attribute_name(:message_sid) %></th>
       <th><%= model_class.human_attribute_name(:from_number) %></th>
       <th><%= model_class.human_attribute_name(:to_number) %></th>
       <th><%= model_class.human_attribute_name(:body) %></th>
@@ -17,16 +16,7 @@
   </thead>
   <tbody>
     <% @sms_messages.each do |sms_message| %>
-      <tr>
-        <td><%= sms_message.user.name %></td>
-        <td><%= sms_message.message_sid %></td>
-        <td><%= sms_message.from_number %></td>
-        <td><%= sms_message.to_number %></td>
-        <td><%= sms_message.body %></td>
-        <td><%= sms_message.outbound %></td>
-        <td><%= sms_message.unread %></td>
-        <td><%=l sms_message.created_at %></td>
-      </tr>
+      <%= render partial: 'message', locals: {sms_message: sms_message} %>
     <% end %>
   </tbody>
 </table>

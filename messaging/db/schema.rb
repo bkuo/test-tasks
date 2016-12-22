@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403191123) do
+ActiveRecord::Schema.define(version: 20161221235709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,18 +29,29 @@ ActiveRecord::Schema.define(version: 20160403191123) do
     t.integer  "user_id"
     t.string   "from_number"
     t.string   "to_number"
+    t.string   "subject_number"
     t.text     "body"
-    t.boolean  "outbound",    default: false, null: false
-    t.boolean  "unread",      default: true,  null: false
+    t.boolean  "outbound",       default: false, null: false
+    t.boolean  "unread",         default: true,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sms_thread_id"
   end
 
   add_index "sms_messages", ["account_id"], name: "index_sms_messages_on_account_id", using: :btree
   add_index "sms_messages", ["created_at"], name: "index_sms_messages_on_created_at", using: :btree
-  add_index "sms_messages", ["from_number"], name: "index_sms_messages_on_from_number", using: :btree
-  add_index "sms_messages", ["to_number"], name: "index_sms_messages_on_to_number", using: :btree
+  add_index "sms_messages", ["subject_number"], name: "index_sms_messages_on_subject_number", using: :btree
   add_index "sms_messages", ["user_id"], name: "index_sms_messages_on_user_id", using: :btree
+
+  create_table "sms_threads", id: false, force: :cascade do |t|
+    t.string   "subject_number", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.datetime "last_received"
+    t.datetime "last_read"
+  end
+
+  add_index "sms_threads", ["subject_number"], name: "index_sms_threads_on_subject_number", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.integer  "account_id"

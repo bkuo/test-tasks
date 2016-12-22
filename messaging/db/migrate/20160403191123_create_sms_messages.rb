@@ -6,6 +6,7 @@ class CreateSmsMessages < ActiveRecord::Migration
 
       t.string :from_number
       t.string :to_number
+      t.string :subject_number
       t.text :body
 
       t.boolean :outbound, null: false, default: false
@@ -14,9 +15,11 @@ class CreateSmsMessages < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :sms_messages, :from_number
-    add_index :sms_messages, :to_number
+    # add_index :sms_messages, :from_number
+    # add_index :sms_messages, :to_number
+    add_index :sms_messages, :subject_number
 
     add_index :sms_messages, :created_at
+
   end
 end

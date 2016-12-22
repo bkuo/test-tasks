@@ -1,0 +1,8 @@
+.row
+  .col-xs-6
+    %ul
+    - @threads.each do |thread|
+      %li
+        =link_to thread.sms_message.body, sms_thread_sms_messages_path(thread)
+    =paginate @threads
+  .col-xs-6

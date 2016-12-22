@@ -1,0 +1,9 @@
+<tr>
+  <td><%= sms_message.user.try :name %></td>
+  <td><%= sms_message.from_number %></td>
+  <td><%= sms_message.to_number %></td>
+  <td><%= sms_message.body %></td>
+  <td><%= sms_message.outbound %></td>
+  <td><%= sms_message.unread %></td>
+  <td><%=l sms_message.created_at %></td>
+</tr>

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id         :integer          not null, primary key
+#  account_id :integer
+#  email      :string
+#  name       :string
+#  time_zone  :string
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class User < ActiveRecord::Base
   belongs_to :account
   validates  :account, presence: true

@@ -1,5 +1,16 @@
 source 'https://rubygems.org'
 
+gem 'annotate'
+
+gem 'haml-rails'
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'redis'
+gem 'awesome_print'
+gem 'kaminari'
+
+
+gem 'activerecord-import', '~>0.4.0'
 gem 'rails', '~> 4.2.6'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
