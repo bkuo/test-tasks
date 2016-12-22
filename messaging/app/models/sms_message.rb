@@ -37,9 +37,10 @@ class SmsMessage < ActiveRecord::Base
   def add_or_touch_thread
     thread = SmsThread.where(subject_number: subject_number).first
     if thread
-      thread.update_attribute :last_received, Time.now
+      thread.update_attribute :last_received, [self.created_at, thread.last_received].max
+      thread.update_attribute :created_at, [self.created_at, thread.last_received].min # only for seeding purposes
     else
-      SmsThread.create subject_number: subject_number
+      SmsThread.create subject_number: subject_number, last_received: self.created_at, created_at: self.created_at
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221235709) do
+ActiveRecord::Schema.define(version: 20161222002515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20161221235709) do
   add_index "sms_messages", ["account_id"], name: "index_sms_messages_on_account_id", using: :btree
   add_index "sms_messages", ["created_at"], name: "index_sms_messages_on_created_at", using: :btree
   add_index "sms_messages", ["subject_number"], name: "index_sms_messages_on_subject_number", using: :btree
+  add_index "sms_messages", ["unread"], name: "index_sms_messages_on_unread", using: :btree
   add_index "sms_messages", ["user_id"], name: "index_sms_messages_on_user_id", using: :btree
 
   create_table "sms_threads", id: false, force: :cascade do |t|
