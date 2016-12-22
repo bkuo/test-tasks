@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222012223) do
+ActiveRecord::Schema.define(version: 20161222014407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20161222012223) do
   end
 
   add_index "accounts", ["name"], name: "index_accounts_on_name", unique: true, using: :btree
+
+  create_table "broadcast_messages", force: :cascade do |t|
+    t.integer  "account_id"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "broadcast_messages", ["account_id"], name: "index_broadcast_messages_on_account_id", using: :btree
+  add_index "broadcast_messages", ["user_id"], name: "index_broadcast_messages_on_user_id", using: :btree
 
   create_table "sms_messages", force: :cascade do |t|
     t.integer  "account_id"
@@ -70,4 +81,6 @@ ActiveRecord::Schema.define(version: 20161222012223) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["time_zone"], name: "index_users_on_time_zone", using: :btree
 
+  add_foreign_key "broadcast_messages", "accounts"
+  add_foreign_key "broadcast_messages", "users"
 end

@@ -1,6 +1,6 @@
 <%- model_class = SmsMessage -%>
 <div class="page-header">
-  <h1><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%="Sms Messages for #{@thread.subject_number}" %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -9,13 +9,19 @@
     <th><%= model_class.human_attribute_name(:from_number) %></th>
     <th><%= model_class.human_attribute_name(:to_number) %></th>
     <th><%= model_class.human_attribute_name(:body) %></th>
-    <th><%= model_class.human_attribute_name(:outbound) %></th>
     <th><%= model_class.human_attribute_name(:created_at) %></th>
   </tr>
   </thead>
   <tbody>
   <% @sms_messages.each do |sms_message| %>
-      <%= render partial: 'message', locals: {sms_message: sms_message} %>
+      <tr class=sms_message.outbound?  ? 'outbound' : ''>
+        <td><%= sms_message.user.try :name %></td>
+        <td><%= sms_message.from_number %></td>
+        <td><%= sms_message.to_number %></td>
+        <td><%= sms_message.body %></td>
+        <td><%=l sms_message.created_at %></td>
+      </tr>
+
   <% end %>
   </tbody>
 </table>

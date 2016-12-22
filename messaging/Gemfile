@@ -8,6 +8,7 @@ gem 'binding_of_caller'
 gem 'redis'
 gem 'awesome_print'
 gem 'kaminari'
+gem 'simple_form'
 
 
 gem 'activerecord-import', '~>0.4.0'

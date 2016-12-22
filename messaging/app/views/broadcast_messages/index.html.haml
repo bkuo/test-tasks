@@ -1,0 +1,24 @@
+- model_class = SmsMessage
+.page-header
+  %h1='Broadcast Messages'
+
+.panel
+  =simple_form_for(BroadcastMessage.new) do |f|
+    =f.input :body, label: false, placeholder: 'Broadcast text here'
+    =f.submit
+-if @messages.empty?
+  .well
+    No broadcast messages found
+-else
+  %table.table-striped
+    %thead
+      %tr
+        %th.col-xs-2=model_class.human_attribute_name(:user)
+        %th.col-xs-7=model_class.human_attribute_name(:body)
+        %th.col-xs-3=model_class.human_attribute_name(:created_at)
+    %tbody
+      -@messages.each do |message|
+        %tr
+          %td=message.user.try :name
+          %td=message.body
+          %td=message.created_at

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'broadcast_messages/create'
+
+  get 'broadcast_messages/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -11,6 +15,7 @@ Rails.application.routes.draw do
       post 'mark_as_read'
     end
   end
+  resources :broadcast_messages, only: [:index, :create]
 
 
   # Example of regular route:
