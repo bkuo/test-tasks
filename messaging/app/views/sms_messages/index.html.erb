@@ -2,6 +2,13 @@
 <div class="page-header">
   <h1><%="Sms Messages for #{@thread.subject_number}" %></h1>
 </div>
+<div class="panel">
+  <%=simple_form_for([@thread, SmsMessage.new]) do |f|%>
+      <%=f.input :body, label: false, placeholder: 'Simulate receiving message'%>
+      <%=f.submit%>
+  <% end%>
+</div>
+
 <table class="table table-striped">
   <thead>
   <tr>

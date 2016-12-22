@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   resources :sms_threads do
-    resources :sms_messages, only: [:index]
+    resources :sms_messages, only: [:index, :create]
     member do
       post 'mark_as_read'
     end
