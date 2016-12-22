@@ -5,10 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Account.delete_all
-User.delete_all
+
 SmsMessage.delete_all
 SmsThread.delete_all
+BroadcastMessage.delete_all
+User.delete_all
+Account.delete_all
 
 account = Account.first_or_create(name: 'OnboardIQ')
 
@@ -18,7 +20,7 @@ yaroslav = account.users.find_or_create_by(
     name: "Yaroslav", email: "yaroslav@onboardiq.com")
 
 # Let's create some sample messages to avoid confusion, shall we.
-50_000.times do |x|
+500_000.times do |x|
   subject = (1_000_000_000 + Random.rand(8_999_999_999)).to_s
   time = Random.rand(365.0 * 5.0).days.ago
 

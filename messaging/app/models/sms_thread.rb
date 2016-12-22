@@ -23,9 +23,4 @@ class SmsThread < ActiveRecord::Base
   has_many :sms_messages, ->() { order('created_at desc') }, foreign_key: :subject_number
   belongs_to :account
 
-  def unread?
-    return true unless last_read
-    last_received > last_read
-  end
-
 end

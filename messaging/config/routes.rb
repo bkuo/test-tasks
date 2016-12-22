@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :sms_threads do
     resources :sms_messages, only: [:index, :create]
     member do
-      post 'mark_as_read'
+      post 'mark_as_unread'
     end
   end
   resources :broadcast_messages, only: [:index, :create]

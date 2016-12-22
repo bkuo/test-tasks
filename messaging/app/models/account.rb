@@ -18,4 +18,7 @@ class Account < ActiveRecord::Base
   has_many :users
   has_many :sms_messages
   has_many :sms_threads
+  def unread_count
+    sms_threads.where(unread: true).count
+  end
 end

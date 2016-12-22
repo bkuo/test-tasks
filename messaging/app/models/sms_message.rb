@@ -52,7 +52,7 @@ class SmsMessage < ActiveRecord::Base
     else
       thread = SmsThread.create subject_number: subject_number,  last_received: self.created_at, created_at: self.created_at,  account: self.account
     end
-    thread.increment! :unread_count unless self.outbound
+    thread.update_column :unread, true unless self.outbound
   end
 
 

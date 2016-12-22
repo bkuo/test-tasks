@@ -1,8 +1,8 @@
 class SmsThreadsController < ApplicationController
-  def mark_as_read
+  def mark_as_unread
     thread = SmsThread.find(params[:id])
-    thread.update_columns unread_count: 0, last_read: Time.now
-    head 201
+    thread.update_columns unread: true, last_read: Time.now
+    redirect_to :back
 
   end
 end

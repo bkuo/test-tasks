@@ -1,7 +1,10 @@
 <%- model_class = SmsMessage -%>
-<div class="page-header">
-  <h1><%="Sms Messages for #{@thread.subject_number}" %></h1>
-</div>
+<ol class="breadcrumb">
+  <li><%=link_to 'Dashboard', root_path%></li>
+  <li class="active">
+    Thread for #
+    <%=@thread.subject_number%></li>
+</ol>
 <div class="panel">
   <%=simple_form_for([@thread, SmsMessage.new]) do |f|%>
       <%=f.input :body, label: false, placeholder: 'Simulate receiving message'%>
@@ -33,10 +36,3 @@
   </tbody>
 </table>
 
-
-<script>
-
-    $().ready(function () {
-        $.post("/sms_threads/<%= @thread.id%>/mark_as_read")
-    })
-</script>

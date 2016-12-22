@@ -1,9 +1,21 @@
 .row
   .col-xs-12
-    %ul
-    - @threads.each do |thread|
-      %li{class: thread.unread? ? 'strong' : ''}
-        =link_to "#{thread.subject_number} (unread: #{thread.unread_count}) last_received: #{thread.last_received} " , sms_thread_sms_messages_path(thread)
+    %table.table-condensed.table
+      %thead
+        %tr
+          %th
+            Subject Number
+          %th
+            Last Received
+          %th
+            Actions
+      %tbody
+        - @threads.each do |thread|
+          %tr{class: thread.unread? ? 'strong' : ''}
+            %td
+              =link_to "#{thread.subject_number}  #{thread.unread? ? '(unread)': ''}" , sms_thread_sms_messages_path(thread)
+            %td="last_received: #{thread.last_received}"
+            %td=thread.unread? ? '' : link_to( "Mark as unread", mark_as_unread_sms_thread_path(thread), method: 'post')
+
     =paginate @threads
-  .col-xs-6
 

@@ -51,7 +51,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Account: <%= @account.name %></li>
               <li><%= @user.name %> (<%= @user.email %>)</li>
-              <li>Unread threads: <%= @account.sms_threads.pluck(:unread_count).sum %></li>
+              <li>Unread threads: <%= @account.unread_count%></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
