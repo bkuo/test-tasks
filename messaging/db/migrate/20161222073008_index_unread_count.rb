@@ -3,7 +3,7 @@ class IndexUnreadCount < ActiveRecord::Migration
 
   def up
     add_column :sms_threads, :unread, :boolean, default:  false
-    add_index :sms_threads, :unread, where: true
+    add_index :sms_threads, [:account_id, :unread]
     remove_column :sms_threads, :unread_count
   end
 

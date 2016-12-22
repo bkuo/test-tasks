@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(version: 20161222073008) do
     t.boolean  "unread",         default: false
   end
 
+  add_index "sms_threads", ["account_id", "unread"], name: "index_sms_threads_on_account_id_and_unread", using: :btree
   add_index "sms_threads", ["last_received"], name: "index_sms_threads_on_last_received", using: :btree
   add_index "sms_threads", ["subject_number"], name: "index_sms_threads_on_subject_number", unique: true, using: :btree
-  add_index "sms_threads", ["unread"], name: "index_sms_threads_on_unread", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.integer  "account_id"
