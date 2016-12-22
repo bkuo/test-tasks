@@ -1,9 +1,9 @@
 .row
-  .col-xs-6
+  .col-xs-12
     %ul
     - @threads.each do |thread|
       %li{class: thread.unread? ? 'strong' : ''}
-        =link_to "#{thread.subject_number}(#{thread.unread_messages.count}) " , sms_thread_sms_messages_path(thread)
+        =link_to "#{thread.subject_number} (unread: #{thread.unread_count}) last_received: #{thread.last_received} " , sms_thread_sms_messages_path(thread)
     =paginate @threads
   .col-xs-6
 

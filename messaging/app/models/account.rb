@@ -7,10 +7,15 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_accounts_on_name  (name) UNIQUE
+#
 
 class Account < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   has_many :users
   has_many :sms_messages
+  has_many :sms_threads
 end

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   resources :sms_threads do
     resources :sms_messages, only: [:index]
+    member do
+      post 'mark_as_read'
+    end
   end
 
 

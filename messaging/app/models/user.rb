@@ -10,6 +10,12 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_users_on_account_id  (account_id)
+#  index_users_on_email       (email) UNIQUE
+#  index_users_on_time_zone   (time_zone)
+#
 
 class User < ActiveRecord::Base
   belongs_to :account
